@@ -1,0 +1,17 @@
+.input {
+    font-size: var(--font-normal);
+    border: none;
+    border-bottom: 1px solid var(--color-blue);
+    margin-bottom: 16px;
+
+    &:focus-visible {
+        outline: none;
+        border-bottom: 1px solid var(--color-light-blue);
+    }
+
+    &__label {
+        font-size: var(--font-small);
+        color: var(--color-dark-blue);
+        margin-bottom: 8px;
+    }
+}

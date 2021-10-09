@@ -1,0 +1,16 @@
+.registration {
+    &__title {
+        margin-bottom: 24px;
+    }
+    
+    &__form {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 280px;
+    }
+
+    &__button {
+        margin-top: 48px;
+    }
+}

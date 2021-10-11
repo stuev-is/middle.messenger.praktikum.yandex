@@ -1,3 +1,3 @@
 import './button.css';
 
-module.exports = `<input class="button" type="submit" value={{text}}>`;
+module.exports = `<button class="button" type="button">{{text}}</button>`;

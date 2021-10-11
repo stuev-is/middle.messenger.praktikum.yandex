@@ -20178,7 +20178,7 @@ module.hot.accept(reloadCSS);
 
 require("./button.css");
 
-module.exports = "<input class=\"button\" type=\"submit\" value={{text}}>";
+module.exports = "<button class=\"button\" type=\"button\">{{text}}</button>";
 },{"./button.css":"src/modules/button/button.css"}],"src/modules/button/button.js":[function(require,module,exports) {
 "use strict";
 
@@ -20351,7 +20351,7 @@ var content = "\n    <div class=\"title registration__title\">\u0420\u0435\u0433
   value: '{{password2}}',
   maxlength: '25',
   type: 'password'
-}), "\n        <div class=\"registration__button\">\n            ").concat((0, _button.default)('Зарегистрироваться'), "\n        </div>\n    </form>\n    <a class='link' href=\"src/pages/login/login.html\">\u0412\u043E\u0439\u0442\u0438</a>\n");
+}), "\n        <div class=\"registration__button\">\n            ").concat((0, _button.default)('Зарегистрироваться'), "\n        </div>\n    </form>\n    <a class='link' href=\"../login/login.html\">\u0412\u043E\u0439\u0442\u0438</a>\n");
 var tmpl = (0, _layoutCentered.default)(content);
 var _default = tmpl;
 exports.default = _default;
@@ -20404,7 +20404,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53528" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54717" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

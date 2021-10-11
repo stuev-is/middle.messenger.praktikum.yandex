@@ -20178,7 +20178,7 @@ module.hot.accept(reloadCSS);
 
 require("./button.css");
 
-module.exports = "<input class=\"button\" type=\"submit\" value={{text}}>";
+module.exports = "<button class=\"button\" type=\"button\">{{text}}</button>";
 },{"./button.css":"src/modules/button/button.css"}],"src/modules/button/button.js":[function(require,module,exports) {
 "use strict";
 
@@ -20321,7 +20321,7 @@ var content = "\n    <div class=\"title login__title\">\u0412\u0445\u043E\u0434<
   value: '{{password}}',
   maxlength: '70',
   type: 'password'
-}), "\n        <div class=\"login__button\">\n            ").concat((0, _button.default)('Войти'), "\n        </div>\n    </form>\n    <a class='link' href=\"src/pages/registration/reg.html\">\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F</a>\n");
+}), "\n        <div class=\"login__button\">\n            ").concat((0, _button.default)('Войти'), "\n        </div>\n    </form>\n    <a class='link' href=\"../registration/reg.html\">\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F</a>\n");
 var tmpl = (0, _layoutCentered.default)(content);
 var _default = tmpl;
 exports.default = _default;
@@ -20369,7 +20369,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53528" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54717" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

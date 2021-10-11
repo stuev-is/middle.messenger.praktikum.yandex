@@ -19,7 +19,7 @@ const content = `
             ${button('Зарегистрироваться')}
         </div>
     </form>
-    <a class='link' href="src/pages/login/login.html">Войти</a>
+    <a class='link' href="../login/login.html">Войти</a>
 `;
 
 const tmpl = layoutCentered(content);

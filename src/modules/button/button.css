@@ -1,0 +1,14 @@
+.button {
+    background-color: var(--color-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    height: 36px;
+    margin-bottom: 16px;
+    font-size: var(--font-normal);
+    width: 100%;
+
+    &:hover {
+        background-color: var(--color-light-blue); 
+    }
+}

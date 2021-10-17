@@ -1,5 +1,5 @@
-import Handlebars from 'Handlebars';
-import loginTemplate from './reg.tmpl.js';
+import Handlebars from 'handlebars';
+import loginTemplate from './reg.tmpl';
 
 const resultHTML = Handlebars.compile(loginTemplate)({
     login: 'iss',
@@ -11,4 +11,7 @@ const resultHTML = Handlebars.compile(loginTemplate)({
     second_name: 'Стуев',
 });
 const resultElem = document.getElementById('result');
-resultElem.innerHTML = resultHTML;
+
+if(resultElem) {
+    resultElem.innerHTML = resultHTML;
+}

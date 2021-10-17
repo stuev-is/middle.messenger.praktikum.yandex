@@ -1,6 +1,6 @@
-import button from '../../modules/button/button.js'
-import input from '../../modules/input/input.js';
-import layoutCentered from '../../modules/layoutCentered/layoutCentered.js';
+import button from '../../modules/button/button'
+import input from '../../modules/input/input';
+import layoutCentered from '../../modules/layoutCentered/layoutCentered';
 
 import './reg.css';
 import '../common.css';

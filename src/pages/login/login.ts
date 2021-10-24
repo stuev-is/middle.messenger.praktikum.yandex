@@ -1,9 +1,6 @@
-import Handlebars from 'handlebars';
-
+import compileBlock from '../compileBlock';
+import insertBlock from '../insertBlock';
 import loginTemplate from './login.tmpl';
 
-const resultHTML = Handlebars.compile(loginTemplate)({'login': 'iss', password: '1234567890'});
-const resultElem = document.getElementById('result');
-if(resultElem) {
-    resultElem.innerHTML = resultHTML;
-}
+const result = compileBlock(loginTemplate, {'login': 'iss', password: '1234567890'})
+insertBlock(result, 'result');

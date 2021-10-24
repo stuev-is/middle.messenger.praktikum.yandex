@@ -1,7 +1,9 @@
-import Handlebars from 'handlebars';
-import loginTemplate from './reg.tmpl';
+import compileBlock from '../compileBlock';
+import insertBlock from '../insertBlock';
 
-const resultHTML = Handlebars.compile(loginTemplate)({
+import regTemplate from './reg.tmpl';
+
+const context = {
     login: 'iss',
     password: '1234567890',
     password2: '',
@@ -9,9 +11,7 @@ const resultHTML = Handlebars.compile(loginTemplate)({
     phone: '+7223322223322',
     first_name: 'Игорь',
     second_name: 'Стуев',
-});
-const resultElem = document.getElementById('result');
+};
 
-if(resultElem) {
-    resultElem.innerHTML = resultHTML;
-}
+const result = compileBlock(regTemplate, context)
+insertBlock(result, 'result');

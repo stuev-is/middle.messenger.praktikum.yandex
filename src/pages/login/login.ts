@@ -4,39 +4,71 @@ import loginTemplate from './login.tmpl';
 import Button from '../../components/button/button';
 import Input from '../../components/input/input';
 
+import fieldsValidation from '../../lib/fieldsValidation/fieldsValidation';
+
 const IDS = {
     loginInputId: 'login-input',
     passwordInputId: 'password-input',
-    buttonId: 'button'
+    buttonId: 'button',
+    formId: 'login-form',
 }
 
 const result = compileBlock(loginTemplate, { ...IDS })
 
 insertBlock(result, 'result');
 
-const inputEvents = {
-  'blur': (e) => console.log('blur', e.target.value),
-  'focus': (e) => console.log('focus', e.taget.value),
+const formData = {
+  login: 'IgorStuev',
+  password: '1234567890',
+}
+
+const errors = {
+  login: false,
+  password: false,
+}
+
+const validateField = (inputName: 'login' | 'password', block: any) => {
+  const value = formData[inputName];
+  errors[inputName] = !fieldsValidation(value, inputName);
+  block.setProps({error: errors[inputName], value: formData[inputName]});
+}
+
+const getInputEvents = (inputName: 'login' | 'password', block: any) => {
+  return {
+    'blur': () => {
+      validateField(inputName, block);
+    },
+    'focus': () => console.log('focus'),
+    'input': (e: Event) => {
+      formData[inputName] = (e.target as HTMLInputElement)?.value;
+      console.log('formData', formData);
+    },
+  }
 };
 
 const loginInput = new Input(
   {
-    context: {label: 'Логин:', name: 'login', value: 'IgorStuev', maxlength: '70', type: 'text'},
-    events: inputEvents,
+    context: {label: 'Логин:', name: 'login', maxlength: '70', type: 'text', error: errors.login},
+    value: 'IgorStuev',
   }, 
   IDS.loginInputId)
 loginInput.insertElement();
+loginInput.setProps({events: getInputEvents('login', loginInput)});
 
 const passwordInput = new Input(
   {
-    context: {label: 'Пароль:', name: 'password', value: '1234567890', maxlength: '70', type: 'password'},
-    events: inputEvents,
+    context: {label: 'Пароль:', name: 'password', maxlength: '70', type: 'password'},
+    value: '1234567890',
   }, 
   IDS.passwordInputId)
 passwordInput.insertElement();
+passwordInput.setProps({events: getInputEvents('password', passwordInput)})
 
-const button = new Button({text: 'Войти', events: {click: () => console.log('click')}}, IDS.buttonId);
-console.log('button', button.getContent())
+const onButtonClick = () => {
+  validateField('login', loginInput)
+  validateField('password', passwordInput);
+}
+
+const button = new Button({text: 'Войти', events: {click: onButtonClick }}, IDS.buttonId);
 button.insertElement();
-
 

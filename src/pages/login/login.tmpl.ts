@@ -7,7 +7,7 @@ import '../common.css';
 
 const content = `
     <div class="title login__title">Вход</div>
-    <form action="" method="post" class="login__form" id="login-form">
+    <form action="" method="post" class="login__form" id={{ formId }}>
         ${label({label: 'Логин', name: 'login'})}
         <div id={{ loginInputId }}></div>
         ${label({label: 'Пароль', name: 'password'})}

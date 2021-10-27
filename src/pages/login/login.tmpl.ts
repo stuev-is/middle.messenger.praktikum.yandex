@@ -1,6 +1,6 @@
-import button from '../../modules/button/button';
-import label from '../../modules/label/label';
-import layoutCentered from '../../modules/layoutCentered/layoutCentered';
+import button from '../../components/button/button';
+import label from '../../components/label/label';
+import layoutCentered from '../../components/layoutCentered/layoutCentered';
 
 import './login.css';
 import '../common.css';

@@ -1,8 +1,8 @@
 import compileBlock from '../compileBlock';
 import insertBlock from '../insertBlock';
 import loginTemplate from './login.tmpl';
-import Button from '../../modules/button/button';
-import Input from '../../modules/input/input';
+import Button from '../../components/button/button';
+import Input from '../../components/input/input';
 
 const IDS = {
     loginInputId: 'login-input',

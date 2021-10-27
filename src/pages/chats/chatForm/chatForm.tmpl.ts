@@ -1,4 +1,4 @@
-import input from '../../../modules/input/input';
+import input from '../../../components/input/input';
 
 const tmpl = `
     <div class="chats__form-container">

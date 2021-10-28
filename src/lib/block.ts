@@ -88,14 +88,11 @@ export default abstract class Block {
         return;
       }
       const oldProps = Object.assign({}, this.props)
-      console.log('oldProps', oldProps);
       const newProps = Object.assign(this.props, nextProps);
-      console.log('newProps', newProps);
       this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, newProps);
     };
   
     getElement() {
-      console.log('aaa', this._element);
       return this._element;
     }
   
@@ -104,7 +101,6 @@ export default abstract class Block {
 
       if(this._element && block) {
         this._element.innerHTML = block;
-        console.log('this._element', this._element);
       }
 
       this._addEvents();
@@ -138,7 +134,6 @@ export default abstract class Block {
           return typeof value === "function" ? value.bind(target) : value;
         },
         set(target, prop: string, val) {
-          console.log('set');
           if (prop.indexOf('_') === 0) {
             throw new Error('Нет прав');
           }

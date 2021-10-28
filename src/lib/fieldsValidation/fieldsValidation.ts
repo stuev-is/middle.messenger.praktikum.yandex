@@ -1,9 +1,9 @@
 export default function(value: string, fieldName: string): boolean {
     switch (fieldName) {
         case 'login': 
-            console.log('aaa', (/[\W]/).test(value));
             return value.length >=3 && value.length <=20 && (/[\D]/).test(value) && !(/[^\-\w]/).test(value);
         case 'password':
+        case 'password2':
             return value.length >=8 && value.length <=40 && (/[A-Z,А-Я]/).test(value);
         case 'first_name':
         case 'second_name': 

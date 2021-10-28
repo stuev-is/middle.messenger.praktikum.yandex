@@ -11,7 +11,6 @@ export default class Button extends Block {
     }
 
     render() {
-      console.log('render button', this.props);
         return Handlebars.compile(buttonTemplate, {noEscape: true})({text: this.props.text});
     }
 }

@@ -2,7 +2,9 @@
 yandex practicum messenger. зайчатки.
 
 запуск npm run dev
-сборка nom run build 
+сборка npm run build 
+
+привет, тайпскрипт
 
 макеты https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=1%3A612
 

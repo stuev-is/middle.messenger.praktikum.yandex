@@ -10,7 +10,7 @@ body {
 
     &__container {
         background-color: var(--color-white);
-        box-shadow:  0 8px 16px rgba(0, 0, 0, 0.24);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.24);
         border-radius: 8px;
         display: flex;
         align-items: center;

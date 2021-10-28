@@ -9,6 +9,10 @@
     width: 100%;
 
     &:hover {
-        background-color: var(--color-light-blue); 
+        background-color: var(--color-light-blue);
+    }
+
+    &:focus-visible {
+        outline: none;
     }
 }

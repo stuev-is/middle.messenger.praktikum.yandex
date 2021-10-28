@@ -1,6 +1,7 @@
 body {
-    font-family: 'Arial', 'Helvetica Neue', 'Helvetica';
+    font-family: 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
     font-size: 15px;
+    margin: 0;
 }
 
 :root {
@@ -10,7 +11,8 @@ body {
     --color-red: #f76c6c;
     --color-yellow: #f8e9a1;
     --color-white: #fff;
-
+    --color-gray: #999;
+    --color-light-gray: #f8f8f8;
     --font-normal: 15px;
     --font-small: 13px;
 }
@@ -18,6 +20,7 @@ body {
 .link {
     color: var(--color-blue);
     text-decoration: none;
+
     &:hover {
         color: var(--color-red);
     }
@@ -28,4 +31,3 @@ body {
     font-weight: bold;
     color: var(--color-dark-blue);
 }
-

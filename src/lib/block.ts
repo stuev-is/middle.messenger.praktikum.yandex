@@ -123,7 +123,6 @@ export default abstract class Block {
     }
   
     _makePropsProxy = (props: Props) => {
-      // const self = this;
       return new Proxy(props, {
         get(target, prop: string) {
           if (prop.indexOf('_') === 0) {
@@ -138,7 +137,6 @@ export default abstract class Block {
             throw new Error('Нет прав');
           }
           target[prop] = val;
-          // self.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
           return true;
         },
         deleteProperty() {
@@ -148,7 +146,6 @@ export default abstract class Block {
     }
   
     _createDocumentElement(tagName: string) {
-      // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
       return document.createElement(tagName);
     }
 

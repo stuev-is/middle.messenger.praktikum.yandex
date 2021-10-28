@@ -6,11 +6,6 @@
         background-color: var(--color-light-gray);
     }
 
-    &__messages {
-        flex: 1;
-        overflow-y: scroll;
-    }
-
     &__list-item {
         padding: 10px;
         border-bottom: 1px solid var(--color-blue);
@@ -99,6 +94,8 @@
     }
 
     &__messages {
+        flex: 1;
+        overflow-y: scroll;
         width: 100%;
         padding: 30px;
         box-sizing: border-box;
@@ -154,15 +151,21 @@
         border: none;
         background-size: contain;
         border-radius: 8px;
-
-        &:hover {
-            background-color: var(--color-light-gray);
-        }
     }
 
     &__form-attach-button {
         margin-right: 10px;
         background-image: url('../../../static/attach.svg');
+    }
+
+    &__form-send-button {
+        margin-left: 10px;
+        background-image: url('../../../static/send.png');
+    }
+
+    &__form-attach-button:hover,
+    &__form-send-button:hover {
+        background-color: var(--color-light-gray);
     }
 
     &__form-input {
@@ -173,10 +176,5 @@
         flex: 1;
         padding: 8px;
         box-sizing: border-box;
-    }
-
-    &__form-send-button {
-        margin-left: 10px;
-        background-image: url('../../../static/send.png');
     }
 }

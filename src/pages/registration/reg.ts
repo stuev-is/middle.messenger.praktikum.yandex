@@ -28,13 +28,13 @@ const formData = {
 }
 
 const formErrors = {
-  login: false,
-  password: false,
-  password2: false,
-  email: false,
-  phone: false,
-  first_name: false,
-  second_name: false,
+  login: '',
+  password: '',
+  password2: '',
+  email: '',
+  phone: '',
+  first_name: '',
+  second_name: '',
 }
 
 type Field = 'login' | 'password' | 'password2' | 'email' | 'phone' | 'first_name' | 'second_name';

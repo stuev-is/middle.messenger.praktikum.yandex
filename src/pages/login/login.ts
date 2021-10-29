@@ -19,8 +19,8 @@ const formData = {
 }
 
 const formErrors = {
-  login: false,
-  password: false,
+  login: '',
+  password: '',
 }
 
 type Field = 'login' | 'password';

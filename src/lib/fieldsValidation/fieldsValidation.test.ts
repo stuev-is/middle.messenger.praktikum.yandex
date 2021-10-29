@@ -3,57 +3,61 @@ import fieldsValidation from "./fieldsValidation";
 const TEST_CASES_LOGIN = [
     {
         value: 'abc',
-        result: true,
+        result: '',
     },
     {
         value: '1234567890qwertyuiop',
-        result: true,
+        result: '',
     },
     {
         value: 'ab',
-        result: false,
+        result: 'можно от 3 до 20 символов',
     },
     {
         value: '1234567890qwertyuiopa',
-        result: false,
+        result: "можно от 3 до 20 символов",
     },
     {
         value: 'ab12',
-        result: true,
+        result: '',
     },
     {
         value: '1234',
-        result: false,
+        result: 'используй не только цифры',
     },
     {
         value: 'ab c',
-        result: false,
+        result: 'не стоит использовать кириллицу, спецсимволы или пробелы',
     },
     {
         value: 'ab-c',
-        result: true,
+        result: '',
     },
     {
         value: 'ab_c',
-        result: true,
+        result: '',
     },
     {
         value: 'ab%c',
-        result: false,
+        result: 'не стоит использовать кириллицу, спецсимволы или пробелы',
     },
     {
         value: 'ab-&c',
-        result: false,
+        result: 'не стоит использовать кириллицу, спецсимволы или пробелы',
     },
     {
         value: 'привет',
-        result: false,
+        result: 'не стоит использовать кириллицу, спецсимволы или пробелы',
     },
+    {
+        value: '11',
+        result: 'можно от 3 до 20 символов, используй не только цифры',
+    }
 ]
 
 describe('login', () => {
     TEST_CASES_LOGIN.forEach(test => {
-        it(`должен вернуть ${test.result} для ${test.value}`, () => {
+        it(`должен вернуть текст ошибки для ${test.value}`, () => {
             expect(fieldsValidation(test.value, 'login')).toBe(test.result);
         })
     })
@@ -62,37 +66,37 @@ describe('login', () => {
 const TEST_CASES_PASSWORD = [
     {
         value: '123456A',
-        result: false,
+        result: 'можно от 8 до 40 символов',
     },
     {
         value: '1234567A',
-        result: true,
+        result: '',
     },
     {
         value: '123456789012345678901234567890123456789A',
-        result: true,
+        result: '',
     },
     {
         value: '1234567890123456789012345678901234567890A',
-        result: false,
+        result: "можно от 8 до 40 символов",
     },
     {
         value: 'asdfghjkl',
-        result: false,
+        result: 'должна быть заглавная буква',
     },
     {
         value: 'asdfghjkL',
-        result: true,
+        result: '',
     },
     {
         value: 'приветПривет',
-        result: true,
+        result: '',
     },
 ]
 
 describe('password', () => {
     TEST_CASES_PASSWORD.forEach(test => {
-        it(`должен вернуть ${test.result} для ${test.value}`, () => {
+        it(`должен вернуть текст ошибки для ${test.value}`, () => {
             expect(fieldsValidation(test.value, 'password')).toBe(test.result);
         })
     })
@@ -101,37 +105,37 @@ describe('password', () => {
 const TEST_CASES_NAMES = [
     {
         value: '123456A',
-        result: false,
+        result: 'напиши имя с заглавной буквы, не стоит использовать спецсимволы, цифры и пробелы',
     },
     {
         value: 'Игорь',
-        result: true,
+        result: '',
     },
     {
         value: 'Стуев-Задунайский',
-        result: true,
+        result: '',
     },
     {
         value: 'Игорь Стуев',
-        result: false,
+        result: 'не стоит использовать спецсимволы, цифры и пробелы',
     },
     {
         value: 'Igor',
-        result: true,
+        result: '',
     },
     {
         value: 'igor',
-        result: false,
+        result:  'напиши имя с заглавной буквы',
     },
     {
         value: 'Иг&рь',
-        result: false,
+        result: 'не стоит использовать спецсимволы, цифры и пробелы',
     },
 ]
 
 describe('name', () => {
     TEST_CASES_NAMES.forEach(test => {
-        it(`должен вернуть ${test.result} для ${test.value}`, () => {
+        it(`должен вернуть текст ошибки для ${test.value}`, () => {
             expect(fieldsValidation(test.value, 'first_name')).toBe(test.result);
         })
     })
@@ -140,35 +144,35 @@ describe('name', () => {
 const TEST_CASES_PHONES = [
     {
         value: '1234567890',
-        result: true,
+        result: '',
     },
     {
         value: '123456789012345',
-        result: true,
+        result: '',
     },
     {
         value: '123456789',
-        result: false,
+        result: 'можно от 10 до 15 символов',
     },
     {
         value: '1234567890123456',
-        result: false,
+        result: 'можно от 10 до 15 символов',
     },
     {
         value: '+1234567890',
-        result: true,
+        result: '',
     },
     {
         value: '1234567890+',
-        result: false,
+        result: 'ты используешь недопустимые символы',
     },
     {
         value: 'aaaaaaaaaaaaa',
-        result: false,
+        result: 'ты используешь недопустимые символы',
     },
     {
         value: '+1aaaaaaaaaaa',
-        result: false,
+        result: 'ты используешь недопустимые символы',
     },
 ]
 
@@ -183,39 +187,39 @@ describe('phone', () => {
 const TEST_CASES_EMAIL = [
     {
         value: 'is@ya.ru',
-        result: true,
+        result: '',
     },
     {
         value: 'is@ya.ru.com',
-        result: true,
+        result: '',
     },
     {
         value: 'is-stuev@ya.ru',
-        result: true,
+        result: '',
     },
     {
         value: 'is.stuev@ya.ru',
-        result: true,
+        result: '',
     },
     {
         value: 'is.ya.ru',
-        result: false,
+        result: 'неправильный формат email',
     },
     {
         value: 'privet',
-        result: false,
+        result: 'неправильный формат email',
     },
     {
         value: 'привет@ya.ru',
-        result: false,
+        result: 'неправильный формат email',
     },
     {
         value: 'is@ya.ru u',
-        result: false,
+        result: 'неправильный формат email',
     },
     {
         value: 'i%s@ya.ru',
-        result: false,
+        result: 'неправильный формат email',
     },
 ]
 

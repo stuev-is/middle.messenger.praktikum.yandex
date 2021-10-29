@@ -17,7 +17,8 @@ export default class Input extends Block {
     }
 
     render() {
+        const { error } = this.props;
         const context = this.props.context as Context;
-        return Handlebars.compile(tmpl, {noEscape: true})({...context, value: this.props.value, error: this.props.error});
+        return Handlebars.compile(tmpl, {noEscape: true})({...context, value: this.props.value, error, hasError: Boolean(error)});
     }
 }

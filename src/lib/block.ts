@@ -43,10 +43,10 @@ export default abstract class Block {
     }
   
     _registerEvents(eventBus: EventBus) {
-      eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-      eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-      eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
-      eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+      eventBus.on(Block.EVENTS.INIT, this.init);
+      eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount);
+      eventBus.on(Block.EVENTS.FLOW_RENDER, this._render);
+      eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate);
     }
   
     _createResources() {
@@ -54,12 +54,12 @@ export default abstract class Block {
       this._element = this._createDocumentElement(tagName);
     }
   
-    init() {
+    init = () => {
       this._createResources();
       this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
   
-    _componentDidMount() {
+    _componentDidMount = () => {
       this.componentDidMount();
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
@@ -68,7 +68,7 @@ export default abstract class Block {
         return;
     }
   
-    _componentDidUpdate(oldProps: Props, newProps: Props) {
+    _componentDidUpdate = (oldProps: Props, newProps: Props) => {
       const result = this.componentDidUpdate(oldProps, newProps);
       if(result) {
         const oldEvents = oldProps.events || {};
@@ -96,7 +96,7 @@ export default abstract class Block {
       return this._element;
     }
   
-    _render() {
+    _render = () => {
       const block = this.render();
 
       if(this._element && block) {

@@ -26,8 +26,8 @@ const formErrors = {
 type Field = 'login' | 'password';
 
 const inputsData = [
-  {name: 'login' as Field, context: {name: 'login', maxlength: '20', type: 'text'}, id: IDS.login},
-  {name: 'password' as Field, context: {name: 'password', maxlength: '40', type: 'password'}, id: IDS.password}
+  {name: 'login' as Field, context: {name: 'login', maxlength: '20', type: 'text', id: IDS.login}, id: IDS.login},
+  {name: 'password' as Field, context: {name: 'password', maxlength: '40', type: 'password', id: IDS.password}, id: IDS.password}
 ]
 
 const buttonData = {

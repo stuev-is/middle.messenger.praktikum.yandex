@@ -51,9 +51,11 @@ const TEST_CASES_LOGIN = [
     },
 ]
 
-TEST_CASES_LOGIN.forEach(test => {
-    it(`должен вернуть ${test.result} для ${test.value}`, () => {
-        expect(fieldsValidation(test.value, 'login')).toBe(test.result);
+describe('login', () => {
+    TEST_CASES_LOGIN.forEach(test => {
+        it(`должен вернуть ${test.result} для ${test.value}`, () => {
+            expect(fieldsValidation(test.value, 'login')).toBe(test.result);
+        })
     })
 })
 
@@ -88,9 +90,11 @@ const TEST_CASES_PASSWORD = [
     },
 ]
 
-TEST_CASES_PASSWORD.forEach(test => {
-    it(`должен вернуть ${test.result} для ${test.value}`, () => {
-        expect(fieldsValidation(test.value, 'password')).toBe(test.result);
+describe('password', () => {
+    TEST_CASES_PASSWORD.forEach(test => {
+        it(`должен вернуть ${test.result} для ${test.value}`, () => {
+            expect(fieldsValidation(test.value, 'password')).toBe(test.result);
+        })
     })
 })
 
@@ -125,9 +129,11 @@ const TEST_CASES_NAMES = [
     },
 ]
 
-TEST_CASES_NAMES.forEach(test => {
-    it(`должен вернуть ${test.result} для ${test.value}`, () => {
-        expect(fieldsValidation(test.value, 'first_name')).toBe(test.result);
+describe('name', () => {
+    TEST_CASES_NAMES.forEach(test => {
+        it(`должен вернуть ${test.result} для ${test.value}`, () => {
+            expect(fieldsValidation(test.value, 'first_name')).toBe(test.result);
+        })
     })
 })
 
@@ -166,11 +172,13 @@ const TEST_CASES_PHONES = [
     },
 ]
 
-TEST_CASES_PHONES.forEach(test => {
-    it(`должен вернуть ${test.result} для ${test.value}`, () => {
-        expect(fieldsValidation(test.value, 'phone')).toBe(test.result);
+describe('phone', () => {
+    TEST_CASES_PHONES.forEach(test => {
+        it(`должен вернуть ${test.result} для ${test.value}`, () => {
+            expect(fieldsValidation(test.value, 'phone')).toBe(test.result);
+        })
     })
-})
+});
 
 const TEST_CASES_EMAIL = [
     {
@@ -211,8 +219,10 @@ const TEST_CASES_EMAIL = [
     },
 ]
 
-TEST_CASES_EMAIL.forEach(test => {
-    it(`должен вернуть ${test.result} для ${test.value}`, () => {
-        expect(fieldsValidation(test.value, 'email')).toBe(test.result);
+describe('email', () => {
+    TEST_CASES_EMAIL.forEach(test => {
+        it(`должен вернуть ${test.result} для ${test.value}`, () => {
+            expect(fieldsValidation(test.value, 'email')).toBe(test.result);
+        })
     })
 })

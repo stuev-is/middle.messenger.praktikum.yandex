@@ -4,9 +4,9 @@ import tmpl from './label.tmpl';
 
 type Context = {
     label: string;
-    name: string;
+    id: string;
 }
 
-export default function({label, name}: Context): string {
-    return Handlebars.compile(tmpl, {noEscape: true})({label, name}, {})
+export default function({label, id}: Context): string {
+    return Handlebars.compile(tmpl, {noEscape: true})({label, id}, {})
 }

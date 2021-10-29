@@ -8,12 +8,12 @@ import '../common.css';
 const content = `
     <div class="title login__title">Вход</div>
     <form action="" method="post" class="login__form" id="login-form">
-        ${label({label: 'Логин', name: 'login'})}
-        <div id={{ login }}></div>
-        ${label({label: 'Пароль', name: 'password'})}
-        <div id={{ password }}></div>
+        ${label({label: 'Логин', id: '{{ login }}'})}
+        <div id="{{ login }}"></div>
+        ${label({label: 'Пароль', id: '{{ password }}'})}
+        <div id="{{ password }}"></div>
         <div class="login__button">
-            <div id={{ button }}></div>
+            <div id="{{ button }}"></div>
         </div>
     </form>
     <a class='link' href="../registration/reg.html">Зарегистрироваться</a>

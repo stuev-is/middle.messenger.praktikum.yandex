@@ -15,7 +15,7 @@ type ButtonData = {
 
 export default abstract class Form<Field extends string> {
     _formData: Record<Field, string>;
-    _formErrors: Record<Field, boolean>;
+    _formErrors: Record<Field, string>;
 
     _inputs: Record<Field, any>;
     _button: HTMLElement;
@@ -27,7 +27,7 @@ export default abstract class Form<Field extends string> {
         inputsData: FieldData<Field>[],
         buttonData: ButtonData,
         formData: Record<Field, string>, 
-        formErrors: Record<Field, boolean>
+        formErrors: Record<Field, string>
     ) {
         this._formData = formData;
         this._formErrors = formErrors;
@@ -38,13 +38,14 @@ export default abstract class Form<Field extends string> {
 
     validateField = (inputName: Field, block: any) => {
         const value = this._formData[inputName];
-        this._formErrors[inputName] = !fieldsValidation(value, inputName);
+        this._formErrors[inputName] = fieldsValidation(value, inputName);
         block.setProps({error: this._formErrors[inputName], value: this._formData[inputName]});
     }
 
     getInputEvents = (inputName: Field, block: any) => {
         return {
           'blur': () => {
+            console.log('blur');
             this.validateField(inputName, block);
           },
           'focus': () => console.log('focus'),

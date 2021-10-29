@@ -52,14 +52,9 @@ const chat = {
 }
 const chats = [ chat, chat ];
 
-const chatsListCompiled = chatsList(chats);
-insertBlock(chatsListCompiled, CHATS_LIST_ID);
-
-const messagesCompiled = messages(chats[0]);
-insertBlock(messagesCompiled, MESSAGES_ID);
-
-const chatFormCompiled = chatForm('Привет!');
-insertBlock(chatFormCompiled, FORM_ID);
+insertBlock(chatsList(chats), CHATS_LIST_ID);
+insertBlock(messages(chats[0]), MESSAGES_ID);
+insertBlock(chatForm('Привет!'), FORM_ID);
 
 export type Message = {
     text: string;

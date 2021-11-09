@@ -2,16 +2,24 @@
     font-size: var(--font-normal);
     border: none;
     border-bottom: 1px solid var(--color-blue);
-    margin-bottom: 16px;
+    width: 100%;
+
+    &:last-child {
+        margin-bottom: 16px;
+    }
 
     &:focus-visible {
         outline: none;
         border-bottom: 1px solid var(--color-light-blue);
     }
 
-    &__label {
-        font-size: var(--font-small);
-        color: var(--color-dark-blue);
+    &_error-true {
+        border-bottom: 1px solid var(--color-red);
+    }
+
+    &__error {
+        font-size: 9px;
+        color: var(--color-red);
         margin-bottom: 8px;
     }
 }

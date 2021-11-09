@@ -1,0 +1,181 @@
+.chats {
+    display: flex;
+
+    &__list {
+        height: 100vh;
+        background-color: var(--color-light-gray);
+    }
+
+    &__list-item {
+        padding: 10px;
+        border-bottom: 1px solid var(--color-blue);
+        display: flex;
+    }
+
+    &__list-item-avatar {
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        background-color: var(--color-light-blue);
+        background-image: url('../../../static/duck.png');
+        background-size: 40px 40px;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        margin-right: 10px;
+    }
+
+    &__list-item-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    &__list-item-first-row,
+    &__list-item-second-row {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__list-item-first-row {
+        align-items: center;
+    }
+
+    &__list-item-second-row {
+        position: relative;
+        flex: 1;
+    }
+
+    &__list-item-name {
+        font-size: 13px;
+        line-height: 13px;
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+
+    &__list-item-date {
+        font-size: 9px;
+        line-height: 13px;
+        color: var(--color-blue);
+    }
+
+    &__list-item-text {
+        padding-right: 44px;
+        display: -webkit-box; /* stylelint-disable-line */
+        -webkit-box-orient: vertical; /* stylelint-disable-line */
+        -webkit-line-clamp: 2; /* stylelint-disable-line */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: var(--color-gray);
+        width: 230px;
+    }
+
+    &__list-item-unread-count {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        color: var(--color-white);
+        font-size: 11px;
+        line-height: 12px;
+        background: var(--color-blue);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__message-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    &__messages {
+        flex: 1;
+        overflow-y: auto;
+        width: 100%;
+        padding: 30px;
+        box-sizing: border-box;
+    }
+
+    &__message {
+        max-width: 400px;
+        border-radius: 8px;
+        padding: 10px;
+
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        &_my-true {
+            margin: 0 0 0 auto;
+            background: var(--color-light-blue);
+        }
+
+        &_my-false {
+            background: var(--color-light-gray);
+        }
+    }
+
+    &__message-unread,
+    &__message-date {
+        float: right;
+    }
+
+    &__message-date {
+        color: var(--color-gray);
+        font-size: 9px;
+        line-height: 25px;
+    }
+
+    &__form-container {
+        width: 100%;
+        border-top: 1px solid var(--color-blue);
+        padding: 10px 20px;
+        box-sizing: border-box;
+    }
+
+    &__form {
+        display: flex;
+        width: 100%;
+    }
+
+    &__form-attach-button,
+    &__form-send-button {
+        width: 32px;
+        height: 32px;
+        background-color: unset;
+        border: none;
+        background-size: contain;
+        border-radius: 8px;
+    }
+
+    &__form-attach-button {
+        margin-right: 10px;
+        background-image: url('../../../static/attach.svg');
+    }
+
+    &__form-send-button {
+        margin-left: 10px;
+        background-image: url('../../../static/send.png');
+    }
+
+    &__form-attach-button:hover,
+    &__form-send-button:hover {
+        background-color: var(--color-light-gray);
+    }
+
+    &__form-input {
+        border: none;
+        min-height: 32px;
+        background-color: var(--color-light-blue);
+        border-radius: 16px;
+        flex: 1;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+}

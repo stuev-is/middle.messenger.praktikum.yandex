@@ -75,7 +75,7 @@ export default class Reg extends Block {
     const buttonData = {
       text: 'Зарегистрироваться',
       id: IDS.button,
-      onClick: (data: any) => this._regControllerInstanse.signup(data),
+      onClick: (data: any) => regControllerInstanse.signup(data),
     }
     class RegForm extends Form<Field> {}
     const form = new RegForm(inputsData, buttonData, formData, formErrors);

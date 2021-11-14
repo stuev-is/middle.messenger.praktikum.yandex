@@ -6,6 +6,7 @@
         "sourceMap": true,
         "strictNullChecks": true, 
         "esModuleInterop": true,
-        "target": "es5"
+        "target": "es5",
+        "lib": [ "es2015", "dom" ]
     }
 }

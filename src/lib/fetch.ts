@@ -14,9 +14,13 @@ type Options = {
     data?: Document | XMLHttpRequestBodyInit;
     timeout?: number;
     method?: string;
+    credentials?: string;
+    mode?: string;
+    withCredentials?: boolean;
 }
   
 export default class HTTPTransport {
+    _baseUrl = 'https://ya-praktikum.tech/api/v2';
     get = (url: string, options: Options = {}) => {
         const query = queryStringify(options.data);
         const urlWithParams = query ? `${url}?${query}` : url;
@@ -37,34 +41,35 @@ export default class HTTPTransport {
     };
 
     request = (url: string, options: Options, timeout = 5000) => {
-    const { method, data, headers } = options;
-    return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
+        const { method, data, headers, withCredentials } = options;
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
 
-        method && xhr.open(method, url, true);
+            method && xhr.open(method, `${this._baseUrl}${url}`, true);
 
-        xhr.timeout = timeout;
+            xhr.timeout = timeout;
+            xhr.withCredentials = Boolean(withCredentials);
 
-        if(headers) {
-            Object.entries(headers).forEach(([key, value]) => {
-                xhr.setRequestHeader(key, value);
-            }) 
-        }
+            if(headers) {
+                Object.entries(headers).forEach(([key, value]) => {
+                    xhr.setRequestHeader(key, value);
+                }) 
+            }
 
-        xhr.onload = () => {
-            resolve(xhr);
-        };
+            xhr.onload = () => {
+                resolve(xhr);
+            };
 
-        xhr.onabort = reject;
-        xhr.onerror = reject;
-        xhr.ontimeout = reject;
+            xhr.onabort = reject;
+            xhr.onerror = reject;
+            xhr.ontimeout = reject;
 
-        if (method === METHODS.GET || !data) {
-            xhr.send();
-        } else {
-            xhr.send(data);
-        }
-    });
+            if (method === METHODS.GET || !data) {
+                xhr.send();
+            } else {
+                xhr.send(data);
+            }
+        }); 
 
     };
 }

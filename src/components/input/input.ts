@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 import tmpl from './input.tmpl';
 
-import Block from '../../lib/block';
+import Block from '../../lib/Block';
 
 type Context = {
     name: string;

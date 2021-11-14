@@ -11,6 +11,7 @@ type FieldData<Field> = {
 type ButtonData = {
     text: string;
     id: string;
+    onClick?: (data: Record<string, any>) => void;
 }
 
 export default abstract class Form<Field extends string> {
@@ -45,7 +46,6 @@ export default abstract class Form<Field extends string> {
     getInputEvents = (inputName: Field, block: any) => {
         return {
           'blur': () => {
-            console.log('blur');
             this.validateField(inputName, block);
           },
           'focus': () => console.log('focus'),
@@ -65,21 +65,25 @@ export default abstract class Form<Field extends string> {
                 }, 
                 inputInfo.id
             )
-            input.insertElement();
             input.setProps({events: this.getInputEvents(inputInfo.name, input)});
             this._inputs[inputInfo.name] = input;
         })
     }
 
     insertButton = () => {
-        const button = new Button({text: this._buttonData.text, events: {click: this.onButtonClick }}, this._buttonData.id);
-        button.insertElement();
+        new Button({text: this._buttonData.text, events: {click: this.onButtonClick }}, this._buttonData.id);
     }
 
     onButtonClick = () => {
         (Object.entries(this._inputs) as Array<[Field, any]>).forEach(([inputName, input]) => {
             this.validateField(inputName, input);
         })
+
+        if(Object.values(this._formErrors).some(Boolean)) {
+            return
+        } else {
+            this._buttonData.onClick && this._buttonData.onClick(this._formData);
+        }
     }
 
     fillForm = () => {

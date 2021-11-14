@@ -22,10 +22,11 @@ const content = `
         ${label({label: 'Пароль (ещё раз)', id: '{{password2}}'})}
         <div id="{{password2}}"></div>
         <div class="registration__button">
+            <div class="registration__error">{{ error }}</div>
             <div id="{{button}}">
         </div>
     </form>
-    <a class='link' href="../login/login.html">Войти</a>
+    <a class='link' href="/">Войти</a>
 `;
 
 const tmpl = layoutCentered(content);

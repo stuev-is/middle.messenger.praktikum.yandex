@@ -1,6 +1,7 @@
 import {v4 as makeUUID} from 'uuid';
 
 import EventBus from "./event-bus";
+import Store from './Store';
 
 type Props = Record<string, any>;
 
@@ -14,17 +15,14 @@ export default abstract class Block {
   
     _element: HTMLElement | null = null;
     _meta: {tagName: string; props: Props, elementToReplaceId: string};
-
     props: Props;
-
     eventBus: () => EventBus;
-
     listeners: Record<string, () => void> = {};
-
     _id: string;
+    _isConnected: boolean;
   
 
-    constructor(props = {} as Props, elementToReplaceId: string ) {
+    constructor(props: Props = {}, elementToReplaceId: string, isConnected = false) {
       const eventBus = new EventBus();
       this._meta = {
         tagName: 'div',
@@ -33,33 +31,30 @@ export default abstract class Block {
       };
   
       this.props = this._makePropsProxy(props);
-  
-      this.eventBus = () => eventBus;
-  
-      this._registerEvents(eventBus);
-      eventBus.emit(Block.EVENTS.INIT);
 
       this._id = makeUUID();
+      this._isConnected = isConnected;
+
+      this.eventBus = () => eventBus;
+      this._registerEvents(eventBus);
+      eventBus.emit(Block.EVENTS.FLOW_CDM);
     }
   
     _registerEvents(eventBus: EventBus) {
-      eventBus.on(Block.EVENTS.INIT, this.init);
-      eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount);
-      eventBus.on(Block.EVENTS.FLOW_RENDER, this._render);
+      eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+      eventBus.on(Block.EVENTS.FLOW_RENDER, this.insertBlock);
       eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate);
     }
-  
-    _createResources() {
-      const { tagName } = this._meta;
-      this._element = this._createDocumentElement(tagName);
+
+    _mapStateToProps(state: Record<string, any>): Record<string, any> | null {
+      return null;
     }
   
-    init = () => {
-      this._createResources();
-      this.eventBus().emit(Block.EVENTS.FLOW_CDM);
-    }
-  
-    _componentDidMount = () => {
+    _componentDidMount() {
+      const store = new Store({});
+      if(this._isConnected) {
+        store.connect(this, this._mapStateToProps);
+      }
       this.componentDidMount();
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
@@ -71,10 +66,12 @@ export default abstract class Block {
     _componentDidUpdate = (oldProps: Props, newProps: Props) => {
       const result = this.componentDidUpdate(oldProps, newProps);
       if(result) {
+        const content = this.getContent() as HTMLElement;
         const oldEvents = oldProps.events || {};
         Object.keys(oldEvents).forEach(eventName => {
-          this._element && this._element.removeEventListener(eventName, oldEvents[eventName]);
+          content && content.removeEventListener(eventName, oldEvents[eventName]);
         });
+
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
       }
     }
@@ -91,18 +88,20 @@ export default abstract class Block {
       const newProps = Object.assign(this.props, nextProps);
       this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, newProps);
     };
-  
-    getElement() {
-      return this._element;
+
+    afterRender() {
+      return;
     }
   
-    _render = () => {
+    insertBlock = () => {
       const block = this.render();
+  
+      const el = document.getElementById(this._meta.elementToReplaceId);
+      if(el && block) {
+        el.innerHTML = block
+      } 
 
-      if(this._element && block) {
-        this._element.innerHTML = block;
-      }
-
+      this.afterRender();
       this._addEvents();
     }
   
@@ -110,16 +109,14 @@ export default abstract class Block {
 
     _addEvents() {
       const {events = {}} = this.props;
-
       const content = this.getContent() as HTMLElement;
-  
       Object.keys(events).forEach(eventName => {
         content && content.addEventListener(eventName, events[eventName]);
       });
     }
   
     getContent() {
-      return this._element?.childNodes[0];
+      return document.getElementById(this._meta.elementToReplaceId)?.childNodes[0];
     }
   
     _makePropsProxy = (props: Props) => {

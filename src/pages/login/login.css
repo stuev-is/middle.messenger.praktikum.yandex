@@ -13,4 +13,11 @@
     &__button {
         margin-top: 160px;
     }
+
+    &__error {
+        color: var(--color-red);
+        width: 100%;
+        text-align: center;
+        margin-bottom: 8px;
+    }
 }

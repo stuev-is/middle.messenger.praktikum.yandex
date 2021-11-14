@@ -1,4 +1,3 @@
-import button from '../../components/button/button';
 import label from '../../components/label/label';
 import layoutCentered from '../../components/layoutCentered/layoutCentered';
 
@@ -13,10 +12,11 @@ const content = `
         ${label({label: 'Пароль', id: '{{ password }}'})}
         <div id="{{ password }}"></div>
         <div class="login__button">
+            <div class="login__error">{{ error }}</div>
             <div id="{{ button }}"></div>
         </div>
     </form>
-    <a class='link' href="../registration/reg.html">Зарегистрироваться</a>
+    <a class='link' href="/sign-up">Зарегистрироваться</a>
 `;
 
 const tmpl = layoutCentered(content);
